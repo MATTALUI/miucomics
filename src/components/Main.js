@@ -19,10 +19,9 @@ class NewComic extends Component {
     return (
       <div className="App">
         <Navbar />
-        <h1>MIX IT UP!</h1>
         <div className="pure-g">
           {this.state.series.map((series,i)=>{
-            return <SeriesShower key={i} title={series.title} covers={series.issue_covers} volume={series.volume}/>
+            return <SeriesShower key={i} title={series.title} covers={series.issue_covers} volume={series.volume} id={series.id}/>
           })}
         </div>
       </div>

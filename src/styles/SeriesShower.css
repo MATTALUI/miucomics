@@ -1,0 +1,49 @@
+h3{
+  margin: 0;
+}
+.seriesContent{
+  width: 90%;
+  background-color: white;
+  margin: 0 auto;
+  border-radius: 5%;
+  border-style: solid;
+  border-color: white;
+}
+.seriesContent:hover{
+  border-color: black;
+  box-shadow: 10px 10px 5px grey;
+}
+.seriesCover{
+  width: 100%;
+}
+.coverHolder{
+  background-color: white;
+  max-width: 90%;
+  margin: 1% auto 0% auto;
+  height: 34vh;
+  overflow:hidden;
+}
+.chooseArrow{
+  height: 1.5em;
+  width: 1.5em;
+  background-color: rgba(256,256,256,.5);
+}
+.chooseArrow:hover{
+  background-color: rgba(256,256,256,.85);
+}
+.right{
+  clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+}
+.left{
+  clip-path: polygon(0% 50%, 100% 0%, 100% 100%);
+}
+.coverControl{
+  width: 25%;
+  margin: 0 auto;
+  justify-content: space-between;
+  display: flex;
+}
+.seriesCard{
+  margin-top: 1%;
+  /*margin-bottom: 1%;*/
+}
