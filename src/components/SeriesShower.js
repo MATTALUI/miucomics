@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import '../styles/SeriesShower.css';
+import '../styles/Shower.css';
 
 class SeriesShower extends React.Component{
   constructor(props){
@@ -8,7 +8,7 @@ class SeriesShower extends React.Component{
     this.state = {
       imageIndex: 0
     };
-    setInterval(this.coverRight,15000);
+    // setInterval(this.coverRight,15000);
   }
   coverLeft = ()=>{
     if(this.state.imageIndex === 0){
@@ -26,16 +26,12 @@ class SeriesShower extends React.Component{
       this.setState({imageIndex: newIndex});
     }
   }
-  goToIssue = ()=>{
-    console.log(this.props.id);
-  }
-
-
 
 
   render(){
     return (
-        <div className="pure-u-1-2 pure-u-md-1-3 seriesCard" onClick={this.goToIssue}>
+      <Link className="pure-u-1-2 pure-u-md-1-3" to={`/${this.props.id}/${this.props.title.split(' ').join('-')}-Volume-${this.props.volume}`}>
+        <div className=" seriesCard">
           <div className="seriesContent">
             <br/>
             <div className="coverHolder">
@@ -50,6 +46,7 @@ class SeriesShower extends React.Component{
             <h3>{`${this.props.title} V${this.props.volume}`}</h3>
           </div>
         </div>
+      </Link>
     )
   }
 

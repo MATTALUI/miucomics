@@ -44,6 +44,10 @@ h3{
   display: flex;
 }
 .seriesCard{
-  margin-top: 1%;
-  /*margin-bottom: 1%;*/
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+a{
+  color: black;
+  text-decoration: none;
 }

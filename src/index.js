@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/index.css';
 import Main from './components/Main.js';
-import NewComic from './components/NewForm.js';
+import MainIssues from './components/MainIssues.js';
+import NewSeries from './components/NewSeries.js';
 import FourOhFour from './components/FourOhFour.js';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
@@ -11,7 +12,8 @@ class View extends React.Component{
     return (
         <Switch>
           <Route path="/" exact component={Main}/>
-          <Route path="/new" component={NewComic}/>
+          <Route path="/new" exact component={NewSeries}/>
+          <Route path="/:seriesId/:seriesTitle" exact component={MainIssues}/>
           <Route component={FourOhFour}/>
         </Switch>
     )
