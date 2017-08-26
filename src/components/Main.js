@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Navbar from './Navbar.js';
 import SeriesShower from './SeriesShower.js'
 import NewSeries from './NewSeries';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 import '../styles/Main.css';
 import '../styles/index.css';
 
@@ -20,18 +20,25 @@ class NewComic extends Component {
     this.setState({series})
   }
   submit = async (data)=>{
-    console.log(data);
-    this.setState({newSeries:false});
+    let call = await fetch('http://localhost:8000/comics/series', {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+    let newPost = await call.json();
+    let copy = this.state.series.slice();
+    copy.push(newPost);
+    this.setState({newSeries:false, series: copy});
   }
   cancel = ()=>{
-    console.log('cancel');
     this.setState({newSeries:false});
   }
   toggleNewSeriesForm=()=>{
     this.setState({newSeries:true});
   }
   render() {
-
     return (
       <div className="App">
         <Navbar />
