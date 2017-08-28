@@ -9,11 +9,12 @@ class MainIssues extends React.Component{
     super(props);
     this.state ={
       issues: [],
-      addNewIssue: false
+      addNewIssue: false,
+      seriesId: this.props.match.params.seriesId
     }
   }
   componentDidMount= async ()=>{
-    let call = await fetch(`http://localhost:8000/comics/series/${this.props.match.params.seriesId}`);
+    let call = await fetch(`http://localhost:8000/comics/series/${this.state.seriesId}`);
     let issues = await call.json();
     this.setState({issues})
   }
@@ -28,7 +29,7 @@ class MainIssues extends React.Component{
     if (this.state.issues.length > 0) return (
       <div>
         <Navbar/>
-        {this.state.addNewIssue?<NewIssue cancel={this.toggleNewIssueForm} />:null}
+        {this.state.addNewIssue?<NewIssue cancel={this.toggleNewIssueForm} seriesId={Number(this.state.seriesId)}/>:null}
         <div className="App">
           <h1>{this.props.match.url.split('/')[2].split('-').join(' ')}</h1>
           {this.state.addNewIssue?null:<button style={{height: '10vh'}} className="pure-u-1-5 pure-button button-warning" onClick={this.toggleNewIssueForm}>ADD NEW Issue</button>}
@@ -43,7 +44,7 @@ class MainIssues extends React.Component{
     return (
       <div>
       <Navbar/>
-      {this.state.addNewIssue?<NewIssue cancel={this.toggleNewIssueForm} />:null}
+      {this.state.addNewIssue?<NewIssue seriesId={Number(this.state.seriesId)} cancel={this.toggleNewIssueForm} />:null}
       <div className = "App">
         <h1>There are no issues in this series...</h1>
         {this.state.addNewIssue?null:<button style={{height: '10vh'}} className="pure-u-1-5 pure-button button-warning" onClick={this.toggleNewIssueForm}>ADD NEW Issue</button>}

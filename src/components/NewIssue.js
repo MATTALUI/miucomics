@@ -16,13 +16,26 @@ export default class NewIssue extends React.Component{
   }
 
   submit = async (event)=>{
-    event.preventDefault()
+    event.preventDefault();
     console.log('valid?: ',this.validate());
     if(this.validate()){
       console.log(this.state);
       let issue = new FormData();
-      issue.append('number', this.state.number);
-      
+      issue.append('series_id', Number(this.props.seriesId));
+      issue.append('number', Number(this.state.number));
+      issue.append('ebay', this.state.ebay);
+      issue.append('shopify', this.state.shopify);
+      if (!isNaN(this.state.pub_date.getTime())){
+        issue.append('pub_date', this.state.pub_date);
+      }
+      if(this.state.cover_image != undefined){
+        issue.append('cover_image', this.state.cover_image);
+      }
+      let call = await fetch('http://localhost:8000/comics/issues', {
+        method: "POST",
+        body: issue
+      });
+
     }
   }
   cancel = async (event)=>{
@@ -86,9 +99,8 @@ export default class NewIssue extends React.Component{
     let stockInfoForm = this.generateStockForm();
     let accountedStock = 0;
     this.state.accounted_for.forEach((stockForm)=>{accountedStock+=stockForm.quantity});
-
-
     return (
+
       <div className="pure-g">
         <form className="pure-form pure-u-1" onChange={this.updateForm}   onSubmit={this.submit}>
           <input type="number" min = "1" placeholder="Issue Number" className="pure-u-1-4" ref="number" /><br/>
