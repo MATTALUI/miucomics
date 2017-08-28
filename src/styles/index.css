@@ -1,15 +1,11 @@
-/*body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-}*/
+
 body{
-  /*background-color: rgb(214,213,201);*/
+
   background-color: rgb(255, 235, 173);
 }
 nav{
-  /*background-color: rgb(125,130,184);*/
-  background-color: rgb(184, 200, 221);
+
+  background-color: rgb(122, 64, 64)
 }
 input{
   margin-top: 1em;
