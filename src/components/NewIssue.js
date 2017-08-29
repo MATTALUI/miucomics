@@ -17,25 +17,27 @@ export default class NewIssue extends React.Component{
 
   submit = async (event)=>{
     event.preventDefault();
-    console.log('valid?: ',this.validate());
+    // console.log('valid?: ',this.validate());
     if(this.validate()){
-      console.log(this.state);
       let issue = new FormData();
       issue.append('series_id', Number(this.props.seriesId));
+      issue.append('series_title', this.props.seriesTitle);
       issue.append('number', Number(this.state.number));
       issue.append('ebay', this.state.ebay);
       issue.append('shopify', this.state.shopify);
       if (!isNaN(this.state.pub_date.getTime())){
         issue.append('pub_date', this.state.pub_date);
       }
-      if(this.state.cover_image != undefined){
+      if(this.state.cover_image !== undefined){
         issue.append('cover_image', this.state.cover_image);
       }
       let call = await fetch('http://localhost:8000/comics/issues', {
         method: "POST",
         body: issue
       });
-
+      let newIssueInfo = await call.json()
+      console.log(newIssueInfo);
+      // this.props.newIssueHandler(newIssueInfo);
     }
   }
   cancel = async (event)=>{

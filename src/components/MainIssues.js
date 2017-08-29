@@ -10,7 +10,8 @@ class MainIssues extends React.Component{
     this.state ={
       issues: [],
       addNewIssue: false,
-      seriesId: this.props.match.params.seriesId
+      seriesId: this.props.match.params.seriesId,
+      seriesTitle: this.props.match.params.seriesTitle.split('-').join(' ')
     }
   }
   componentDidMount= async ()=>{
@@ -25,13 +26,22 @@ class MainIssues extends React.Component{
       this.setState({addNewIssue: true});
     }
   }
+  newIssueHandler = (newIssueInfo)=>{
+    let copy = this.state.issues.slice();
+    copy.push(newIssueInfo);
+    this.setState({
+      issues: copy,
+      addNewIssue: false
+    });
+  }
   render(){
     if (this.state.issues.length > 0) return (
       <div>
         <Navbar/>
-        {this.state.addNewIssue?<NewIssue cancel={this.toggleNewIssueForm} seriesId={Number(this.state.seriesId)}/>:null}
+        {this.state.addNewIssue?<NewIssue cancel={this.toggleNewIssueForm} seriesId={Number(this.state.seriesId)} seriesTitle={this.state.seriesTitle}
+        newIssueHandler={this.newIssueHandler}/>:null}
         <div className="App">
-          <h1>{this.props.match.url.split('/')[2].split('-').join(' ')}</h1>
+          <h1>{this.state.seriesTitle}</h1>
           {this.state.addNewIssue?null:<button style={{height: '10vh'}} className="pure-u-1-5 pure-button button-warning" onClick={this.toggleNewIssueForm}>ADD NEW Issue</button>}
           <div className="pure-g">
             {this.state.issues.map((issue,i)=>{
@@ -44,7 +54,8 @@ class MainIssues extends React.Component{
     return (
       <div>
       <Navbar/>
-      {this.state.addNewIssue?<NewIssue seriesId={Number(this.state.seriesId)} cancel={this.toggleNewIssueForm} />:null}
+      {this.state.addNewIssue?<NewIssue seriesId={Number(this.state.seriesId)} cancel={this.toggleNewIssueForm} seriesTitle={this.state.seriesTitle}
+      newIssueHandler={this.newIssueHandler}/>:null}
       <div className = "App">
         <h1>There are no issues in this series...</h1>
         {this.state.addNewIssue?null:<button style={{height: '10vh'}} className="pure-u-1-5 pure-button button-warning" onClick={this.toggleNewIssueForm}>ADD NEW Issue</button>}
