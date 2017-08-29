@@ -8,7 +8,7 @@ class SeriesShower extends React.Component{
     this.state = {
       imageIndex: 0
     };
-    // setInterval(this.coverRight,15000);
+    // let change = setInterval(this.coverRight,15000);
   }
   coverLeft = ()=>{
     if(this.state.imageIndex === 0){

@@ -45,7 +45,7 @@ class MainIssues extends React.Component{
           {this.state.addNewIssue?null:<button style={{height: '10vh'}} className="pure-u-1-5 pure-button button-warning" onClick={this.toggleNewIssueForm}>ADD NEW Issue</button>}
           <div className="pure-g">
             {this.state.issues.map((issue,i)=>{
-              return <IssueShower key ={i} id={issue.id} number={issue.number} cover={issue.cover_image}/>
+              return <IssueShower key ={i} id={issue.id} number={issue.number} cover={issue.cover_image} series={this.state.seriesTitle} stock={issue.stock}/>
             })}
           </div>
         </div>

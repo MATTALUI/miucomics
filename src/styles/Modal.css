@@ -1,0 +1,29 @@
+.modalContainer{
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+.half{
+  height: 100%;
+  width: 50%;
+}
+.bg-black{
+  background-color: rgb(230,230,230);
+  /*background-color: rgb(255,210,65);*/
+}
+img.modalCover{
+  width: 100%;
+  margin: 0 auto;
+}
+.coverHolderModal{
+  width: 90%;
+  margin: 1em auto;
+  max-height: 75%;
+  overflow: hidden;
+  /*border-style: solid;
+  border-color: black;*/
+
+}
+h1{
+  text-align: center;
+}

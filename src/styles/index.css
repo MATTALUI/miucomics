@@ -4,8 +4,7 @@ body{
   background-color: rgb(255, 235, 173);
 }
 nav{
-
-  background-color: rgb(122, 64, 64)
+  background-color: rgb(122, 64, 64);
 }
 input{
   margin-top: 1em;
@@ -13,6 +12,14 @@ input{
 #logo{
   margin-left: 2em;
   height: 15vh;
+  border-color: rgb(122, 64, 64);
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 100%;
+}
+#logo:hover{
+  border-color: white;
+  background-color: white;
 }
 
 
