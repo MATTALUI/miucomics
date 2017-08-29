@@ -17,7 +17,6 @@ export default class NewIssue extends React.Component{
 
   submit = async (event)=>{
     event.preventDefault();
-    // console.log('valid?: ',this.validate());
     if(this.validate()){
       let issue = new FormData();
       issue.append('series_id', Number(this.props.seriesId));
@@ -36,7 +35,7 @@ export default class NewIssue extends React.Component{
         body: issue
       });
       let newIssueInfo = await call.json()
-      console.log(newIssueInfo);
+      this.submitStockInfo(newIssueInfo.id)
       this.props.newIssueHandler(newIssueInfo);
     }
   }
@@ -45,6 +44,20 @@ export default class NewIssue extends React.Component{
     this.props.cancel();
   }
 
+  submitStockInfo= async(issueId)=>{
+    let stockObject = {
+      issueId,
+      stockInfo: this.state.accounted_for
+    }
+    console.log(stockObject);
+    fetch('http://localhost:8000/comics/stock', {
+      method: "POST",
+      body: JSON.stringify(stockObject),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+  }
   updateForm = ()=>{
     this.setState({
       number: Number(this.refs.number.value),
