@@ -25,7 +25,7 @@ export default class NewIssue extends React.Component{
       issue.append('number', Number(this.state.number));
       issue.append('ebay', this.state.ebay);
       issue.append('shopify', this.state.shopify);
-      if (!isNaN(this.state.pub_date.getTime())){
+      if (this.state.pub_date !== ''){
         issue.append('pub_date', this.state.pub_date);
       }
       if(this.state.cover_image !== undefined){
@@ -37,7 +37,7 @@ export default class NewIssue extends React.Component{
       });
       let newIssueInfo = await call.json()
       console.log(newIssueInfo);
-      // this.props.newIssueHandler(newIssueInfo);
+      this.props.newIssueHandler(newIssueInfo);
     }
   }
   cancel = async (event)=>{
@@ -48,7 +48,7 @@ export default class NewIssue extends React.Component{
   updateForm = ()=>{
     this.setState({
       number: Number(this.refs.number.value),
-      pub_date: new Date(this.refs.pub_date.value),
+      pub_date: this.refs.pub_date.value,
       cover_image: this.refs.cover_image.files[0],
       ebay: this.refs.ebay.checked,
       shopify: this.refs.shopify.checked,
