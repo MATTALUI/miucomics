@@ -1,10 +1,12 @@
 
 body{
 
-  background-color: rgb(255, 235, 173);
+  /*background-color: rgb(255, 235, 173);*/
+  background-color: rgb(169,202,234);
 }
 nav{
-  background-color: rgb(122, 64, 64);
+  /*background-color: rgb(122, 64, 64);*/
+  background-color: rgb(47,69,123);
 }
 input{
   margin-top: 1em;
@@ -12,7 +14,7 @@ input{
 #logo{
   margin-left: 2em;
   height: 15vh;
-  border-color: rgb(122, 64, 64);
+  border-color: rgb(47,69,123);
   border-style: solid;
   border-width: 2px;
   border-radius: 100%;
@@ -42,7 +44,9 @@ input{
 }
 
 .button-warning {
-  background: rgb(223, 117, 20); /* this is an orange */
+  /*background: rgb(223, 117, 20); /* this is an orange */
+  background-color: rgb(255,216,95);
+  color: #000;
 }
 
 .button-secondary {

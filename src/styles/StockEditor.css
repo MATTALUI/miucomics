@@ -1,0 +1,16 @@
+.count{
+  text-align: center;
+}
+.leftArrow{
+  float: right;
+}
+i:hover{
+  color:red;
+}
+i:active{
+  color: blue;
+}
+table{
+  margin-left: auto;
+  margin-right: auto;
+}

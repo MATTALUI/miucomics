@@ -1,6 +1,7 @@
 import React from 'react';
 // import {Link} from 'react-router-dom';
 import ReactModal from 'react-modal';
+import StockEditor from './StockEditor.js';
 import '../styles/Shower.css';
 import '../styles/Modal.css';
 
@@ -43,9 +44,7 @@ class IssueShower extends React.Component{
             </div>
             <div className="half">
               <div className="pure-g">
-              {this.props.stock.map((stockObj,i)=>{
-                return <p key ={i} className="pure-u-1">{stockObj.condition}</p>
-              })}
+                <StockEditor stock={this.props.stock}/>
                 <button className="pure-button button-error" onClick={this.toggleModal}>Close</button>
               </div>
             </div>

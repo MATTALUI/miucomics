@@ -4,7 +4,7 @@ export default class StockForm extends React.Component{
   sendInfo=()=>{
     let stockInfo = {
       quantity: Number(this.refs.quantity.value)||0,
-      quality: this.refs.quality.value,
+      condition: this.refs.quality.value,
       price: Number(this.refs.price.value)
     }
     this.props.manager(stockInfo,this.props.index);

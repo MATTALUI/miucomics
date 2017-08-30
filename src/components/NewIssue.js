@@ -35,13 +35,9 @@ export default class NewIssue extends React.Component{
         body: issue
       });
       let newIssueInfo = await call.json()
-      newIssueInfo.stock = this.state.accounted_for.map((field)=>{
-        field.condition = field.quality;
-        delete field.quality;
-        return field;
-      });
-      console.log(newIssueInfo);
-      this.submitStockInfo(newIssueInfo.id)
+      let stock = await this.submitStockInfo(newIssueInfo.id);
+      console.log(stock);
+      newIssueInfo.stock = stock;
       this.props.newIssueHandler(newIssueInfo);
     }
   }
@@ -55,13 +51,15 @@ export default class NewIssue extends React.Component{
       issueId,
       stockInfo: this.state.accounted_for
     }
-    fetch('http://localhost:8000/comics/stock', {
+    let call = await fetch('http://localhost:8000/comics/stock', {
       method: "POST",
       body: JSON.stringify(stockObject),
       headers: {
         "Content-Type": "application/json"
       }
     });
+    let newStockInfo = await call.json();
+    return newStockInfo;
   }
   updateForm = ()=>{
     this.setState({
@@ -74,9 +72,6 @@ export default class NewIssue extends React.Component{
     });
     this.generateStockForm(Number(this.refs.total.value));
   }
-  // updateStockForm=(id)=>{
-  //   let copy = this.state.accounted_for.slice();
-  // }
   validate = ()=>{
     let infoValid = (this.state.number === 0 || this.state.total===0)?false:true;
     let counter = 0;
