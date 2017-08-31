@@ -36,7 +36,6 @@ export default class NewIssue extends React.Component{
       });
       let newIssueInfo = await call.json()
       let stock = await this.submitStockInfo(newIssueInfo.id);
-      console.log(stock);
       newIssueInfo.stock = stock;
       this.props.newIssueHandler(newIssueInfo);
     }

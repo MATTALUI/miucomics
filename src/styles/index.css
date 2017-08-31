@@ -2,11 +2,13 @@
 body{
 
   /*background-color: rgb(255, 235, 173);*/
-  background-color: rgb(169,202,234);
+  /*background-color: rgb(169,202,234);*/
+  background-image: url('/assets/halftone.png');
 }
 nav{
   /*background-color: rgb(122, 64, 64);*/
   background-color: rgb(47,69,123);
+
 }
 input{
   margin-top: 1em;

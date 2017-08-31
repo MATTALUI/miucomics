@@ -16,12 +16,16 @@ class IssueShower extends React.Component{
     this.setState({showInfo: !this.state.showInfo});
   }
   render(){
+    let totalStock = 0;
+    this.props.stock.forEach((stockObj)=>{
+      totalStock += stockObj.quantity;
+    });
     return (
-
-        <div className="pure-u-1-2 pure-u-md-1-3 seriesCard" onClick={this.toggleModal}>
-          <div className="seriesContent">
+        <div className={`pure-u-1-2 pure-u-md-1-3 seriesCard `} onClick={this.toggleModal}>
+          <div className={`seriesContent ${totalStock>0?'':'allOut'}`}>
             <br/>
             <div className="coverHolder">
+            {totalStock?null:<img src="http://yourbreastmilk.com/wp-content/uploads/2017/05/out-of-stock.png" className="oos" alt="out of stock"/>}
               <img src ={this.props.cover} alt={`cover art for volume ${this.props.title}`} className="seriesCover"/>
             </div>
             <h3>{`#${this.props.number}`}</h3>
@@ -44,7 +48,7 @@ class IssueShower extends React.Component{
             </div>
             <div className="half">
               <div className="pure-g">
-                <StockEditor stock={this.props.stock}/>
+                <StockEditor stock={this.props.stock} id={this.props.id}/>
                 <button className="pure-button button-error" onClick={this.toggleModal}>Close</button>
               </div>
             </div>
