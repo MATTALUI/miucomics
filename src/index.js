@@ -21,6 +21,4 @@ class View extends React.Component{
     )
   }
 }
-
-
 ReactDOM.render( <Router><View/></Router>, document.getElementById('root'));
