@@ -49,7 +49,9 @@ class IssueShower extends React.Component{
             <div className="half">
               <div className="pure-g">
                 <StockEditor stock={this.props.stock} id={this.props.id}/>
-                <button className="pure-button button-error" onClick={this.toggleModal}>Close</button>
+                <div className="pure-u-1">
+                  <button className="pure-button button-error closer" onClick={this.toggleModal}>Close</button>
+                </div>
               </div>
             </div>
           </div>

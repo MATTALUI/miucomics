@@ -27,3 +27,7 @@ img.modalCover{
 h1{
   text-align: center;
 }
+.closer{
+  float: right;
+  margin-top: 1em;
+}
