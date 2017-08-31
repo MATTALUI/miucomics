@@ -7,13 +7,13 @@ import '../styles/index.css';
 
 class NewComic extends Component {
   constructor(props){
-    console.log(process.env.NODE_ENV);
     super(props);
-    if(process.env.NODE_ENV === 'production'){
-      this.host = 'http://miucomics.herokuapp.com/';
+    if(window.location.host.indexOf('herokuapp')>-1){
+      this.host = 'http://miucomics-api.herokuapp.com';
     }else{
       this.host = 'http://localhost:8000'
     }
+    console.log(this.host);
     this.state = {
       series:[],
       newSeries: false
