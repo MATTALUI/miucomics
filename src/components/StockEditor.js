@@ -4,6 +4,11 @@ import '../styles/StockEditor.css';
 class StockEditor extends React.Component{
   constructor(props){
     super(props);
+    if(process.env.NODE_ENV === 'production'){
+      this.host = 'http://miucomics.herokuapp.com/';
+    }else{
+      this.host = 'http://localhost:8000'
+    }
     let stateHolder = {
       mint: {
         quantity: 0,
@@ -55,7 +60,7 @@ class StockEditor extends React.Component{
     let camelized = this.camelize(condition);
     if(this.state[camelized].quantity === 0) return;
     let message = {condition: condition};
-    fetch(`http://localhost:8000/comics/stock/${this.props.id}`, {
+    fetch(`${this.host}/comics/stock/${this.props.id}`, {
       method: "DELETE",
       body: JSON.stringify(message),
       headers: {
@@ -71,7 +76,7 @@ class StockEditor extends React.Component{
   incrementCount= async (condition)=>{
     let camelized = this.camelize(condition);
     let message = {condition: condition};
-    fetch(`http://localhost:8000/comics/stock/${this.props.id}`, {
+    fetch(`${this.host}/comics/stock/${this.props.id}`, {
       method: "PUT",
       body: JSON.stringify(message),
       headers: {
@@ -88,7 +93,7 @@ class StockEditor extends React.Component{
   adjustPrice = async (condition)=>{
     let newPrice = Number(this.refs[`${this.camelize(condition)}Price`].value);
     let message = {price: newPrice, condition: condition};
-    fetch(`http://localhost:8000/comics/stock/${this.props.id}`, {
+    fetch(`${this.host}/comics/stock/${this.props.id}`, {
       method: "PATCH",
       body: JSON.stringify(message),
       headers: {

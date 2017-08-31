@@ -4,6 +4,11 @@ import StockForm from './StockForm.js';
 export default class NewIssue extends React.Component{
   constructor(props){
     super(props);
+    if(process.env.NODE_ENV === 'production'){
+      this.host = 'http://miucomics.herokuapp.com/';
+    }else{
+      this.host = 'http://localhost:8000'
+    }
     this.state ={
       number: 0,
       pub_date: null,
@@ -30,7 +35,7 @@ export default class NewIssue extends React.Component{
       if(this.state.cover_image !== undefined){
         issue.append('cover_image', this.state.cover_image);
       }
-      let call = await fetch('http://localhost:8000/comics/issues', {
+      let call = await fetch(`${this.host}/comics/issues`, {
         method: "POST",
         body: issue
       });
@@ -50,7 +55,7 @@ export default class NewIssue extends React.Component{
       issueId,
       stockInfo: this.state.accounted_for
     }
-    let call = await fetch('http://localhost:8000/comics/stock', {
+    let call = await fetch(`${this.host}/comics/stock`, {
       method: "POST",
       body: JSON.stringify(stockObject),
       headers: {

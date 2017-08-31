@@ -7,6 +7,11 @@ import '../styles/Main.css';
 class MainIssues extends React.Component{
   constructor(props){
     super(props);
+    if(process.env.NODE_ENV === 'production'){
+      this.host = 'http://miucomics.herokuapp.com/';
+    }else{
+      this.host = 'http://localhost:8000'
+    }
     this.state ={
       issues: [],
       addNewIssue: false,
@@ -15,7 +20,7 @@ class MainIssues extends React.Component{
     }
   }
   componentDidMount= async ()=>{
-    let call = await fetch(`http://localhost:8000/comics/series/${this.state.seriesId}`);
+    let call = await fetch(`${this.host}/comics/series/${this.state.seriesId}`);
     let issues = await call.json();
     this.setState({issues})
   }

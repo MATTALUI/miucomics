@@ -8,14 +8,7 @@ class NewSeries extends React.Component{
       volume: null
     };
   }
-  // showChange=()=>{
-  //   console.log(this.refs);
-  //   console.log(this.refs.cover.files[0]);
-  // }
-  // redirect= async ()=>{
-  //   console.log('yo momma');
-  //   window.location.href = '../'
-  // }
+
   updateForm = async ()=>{
     this.setState({
       title: this.refs.title.value,

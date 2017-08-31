@@ -2,25 +2,29 @@ import React, { Component } from 'react';
 import Navbar from './Navbar.js';
 import SeriesShower from './SeriesShower.js'
 import NewSeries from './NewSeries';
-// import {Link} from 'react-router-dom';
 import '../styles/Main.css';
 import '../styles/index.css';
 
 class NewComic extends Component {
   constructor(props){
     super(props);
+    if(process.env.NODE_ENV === 'production'){
+      this.host = 'http://miucomics.herokuapp.com/';
+    }else{
+      this.host = 'http://localhost:8000'
+    }
     this.state = {
       series:[],
       newSeries: false
     };
   }
   componentDidMount= async()=>{
-    let call = await fetch('http://localhost:8000/comics/series')
+    let call = await fetch(`${this.host}/comics/series`)
     let series = await call.json();
     this.setState({series})
   }
   submit = async (data)=>{
-    let call = await fetch('http://localhost:8000/comics/series', {
+    let call = await fetch(`${this.host}/comics/series`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
