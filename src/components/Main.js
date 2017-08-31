@@ -7,6 +7,7 @@ import '../styles/index.css';
 
 class NewComic extends Component {
   constructor(props){
+    console.log(process.env.NODE_ENV);
     super(props);
     if(process.env.NODE_ENV === 'production'){
       this.host = 'http://miucomics.herokuapp.com/';
