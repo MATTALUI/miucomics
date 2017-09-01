@@ -6,8 +6,13 @@ class SeriesShower extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      imageIndex: 0
+      imageIndex: 0,
+      rotate: null
     };
+
+  }
+  componentDidMount=()=>{
+    this.setState({rotate:setInterval(this.coverLeft, 10000)})
   }
   coverLeft = ()=>{
     if(this.state.imageIndex === 0){
@@ -24,6 +29,10 @@ class SeriesShower extends React.Component{
       let newIndex = this.state.imageIndex+1;
       this.setState({imageIndex: newIndex});
     }
+  }
+  componentWillUnmount=()=>{
+    clearInterval(this.state.rotate);
+    this.setState({rotate: null});
   }
 
 

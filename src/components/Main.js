@@ -13,7 +13,6 @@ class NewComic extends Component {
     }else{
       this.host = 'http://localhost:8000'
     }
-    console.log(this.host);
     this.state = {
       series:[],
       newSeries: false
