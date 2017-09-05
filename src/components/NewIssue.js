@@ -131,7 +131,7 @@ export default class NewIssue extends React.Component{
           {stockInfoForm}
           {accountedStock===this.state.total?null:<p style ={{color:'red'}}>Condition quanities must match total amount of stock</p>}
 
-          <input type="checkbox" ref="ebay" placeholder="ebay"/>Display on ebay
+          <input type="checkbox" ref="ebay" placeholder="ebay" style={{display:'none'}}/>
           <input type="checkbox" ref="shopify" placeholder="shopify"/>Display on shopify<br/>
 
           <button className="pure-button pure-u-1-4 button-error"  onClick={this.cancel}>CANCEL</button>
