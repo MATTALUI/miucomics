@@ -42,11 +42,12 @@ class NewComic extends Component {
   toggleNewSeriesForm=()=>{
     this.setState({newSeries:true});
   }
+          // {this.state.newSeries?<NewSeries cancelCallback={this.cancel} submitCallback={this.submit}/>:<button style={{height: '10vh'}} className="pure-u-1-5 pure-button button-warning" onClick={this.toggleNewSeriesForm}>ADD NEW SERIES</button>}
   render() {
     return (
       <div className="App">
-        <Navbar />
-        {this.state.newSeries?<NewSeries cancelCallback={this.cancel} submitCallback={this.submit}/>:<button style={{height: '10vh'}} className="pure-u-1-5 pure-button button-warning" onClick={this.toggleNewSeriesForm}>ADD NEW SERIES</button>}
+        <Navbar show={true} buttonText={'SERIES'} action={this.toggleNewSeriesForm}/>
+        {this.state.newSeries?<NewSeries cancelCallback={this.cancel} submitCallback={this.submit}/>:null}
         <div className="pure-g">
           {this.state.series.map((series,i)=>{
             return <SeriesShower key={i} title={series.title} covers={series.issue_covers} volume={series.volume} id={series.id}/>

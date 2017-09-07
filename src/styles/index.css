@@ -25,6 +25,12 @@ input{
   border-color: white;
   background-color: white;
 }
+.navButton{
+  margin-left: auto;
+  height: 4em;
+  margin-top: 3%;
+  margin-right: 3%;
+}
 
 
 
