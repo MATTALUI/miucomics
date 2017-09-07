@@ -118,24 +118,25 @@ export default class NewIssue extends React.Component{
     this.state.accounted_for.forEach((stockForm)=>{accountedStock+=stockForm.quantity});
     return (
 
-      <div className="pure-g">
+      <div className="pure-g App newForm issue">
         <form className="pure-form pure-u-1" onChange={this.updateForm}   onSubmit={this.submit}>
-          <input type="number" min = "1" placeholder="Issue Number" className="pure-u-1-4" ref="number" /><br/>
+          <input type="number" min = "1" placeholder="Issue Number" className="pure-u-1-2" ref="number" /><br/>
 
-          <input type="date" ref="pub_date" placeholder="Publish Date" /><br/>
+          <input className="pure-u-1-2" type="date" ref="pub_date" placeholder="Publish Date" /><br/>
 
-          <input type="file" ref="cover_image" placeholder="Cover" /><br/>
+          <label htmlFor="cover" className="pure-button pure-u-1-2 button-warning coverButton">ADD COVER</label>
+          <input id="cover" name="cover" type="file" ref="cover_image" placeholder="Cover" hidden={true}/><br/>
 
-          <input type="number" min="0" ref="total" placeholder="Stock" className = "pure-u-2-24" /><br/>
+          <input type="number" min="0" ref="total" placeholder="TotalStock" className = "pure-u-1-2" /><br/>
           {}
           {stockInfoForm}
           {accountedStock===this.state.total?null:<p style ={{color:'red'}}>Condition quanities must match total amount of stock</p>}
 
-          <input type="checkbox" ref="ebay" placeholder="ebay" style={{display:'none'}}/>
+          <input type="checkbox" ref="ebay" placeholder="ebay" hidden={true}/>
           <input type="checkbox" ref="shopify" placeholder="shopify"/>Display on shopify<br/>
 
-          <button className="pure-button pure-u-1-4 button-error"  onClick={this.cancel}>CANCEL</button>
-          <button type="submit" className="pure-button pure-u-1-4 button-success">SUBMIT</button>
+          <button className="pure-button pure-u-1-4 button-error cancel"  onClick={this.cancel}>CANCEL</button>
+          <button type="submit" className="pure-button pure-u-1-4 button-success submit">SUBMIT</button>
         </form>
       </div>
     )

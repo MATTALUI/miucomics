@@ -27,14 +27,14 @@ class NewSeries extends React.Component{
   }
   render(){
     return (
-      <div className="pure-g">
+      <div className="pure-g newForm series">
         <form className="pure-form pure-u-1" onChange={this.updateForm}>
           <div className="pure-u-1"></div>
           <input type="text" placeholder="Series Title" className="pure-u-9-24" ref="title" required/>
           <input type="number" min = "1" placeholder="Volume" className="pure-u-3-24" ref="volume" required/><br/>
           <div className="pure-u-1"></div>
-          <button className="pure-button pure-u-1-4 button-error"  onClick={this.cancel}>CANCEL</button>
-          <button className="pure-button pure-u-1-4 button-success"  onClick={this.submit}>SUBMIT</button>
+          <button className="pure-button pure-u-1-4 button-error cancel"  onClick={this.cancel}>CANCEL</button>
+          <button className="pure-button pure-u-1-4 button-success submit"  onClick={this.submit}>SUBMIT</button>
         </form>
       </div>
     )

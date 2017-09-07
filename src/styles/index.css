@@ -60,6 +60,27 @@ input{
 .button-secondary {
   background: rgb(66, 184, 221); /* this is a light blue */
 }
+.newForm{
+  background-color: rgba(200,200,200,.35);
+  width: 60%;
+  margin: 1em auto;
+  /*border-radius: 5%;*/
+}
+.series{
+  /*border-radius: 25%;*/
+}
+.issue{
+  border-radius: 5%;
+}
+.submit,.cancel{
+  margin-bottom: 1em;
+}
+input{
+  text-align: center;
+}
+.coverButton{
+  margin-top: 3% !important;
+}
 
 
 
