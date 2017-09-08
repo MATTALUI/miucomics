@@ -124,11 +124,11 @@ export default class NewIssue extends React.Component{
 
           <input className="pure-u-1-2" type="date" ref="pub_date" placeholder="Publish Date" /><br/>
 
-          <label htmlFor="cover" className="pure-button pure-u-1-2 button-warning coverButton">ADD COVER</label>
+          <label htmlFor="cover" className="pure-button pure-u-1-2 button-warning coverButton">{this.state.cover_image?this.state.cover_image.name:'ADD COVER'}</label>
           <input id="cover" name="cover" type="file" ref="cover_image" placeholder="Cover" hidden={true}/><br/>
 
           <input type="number" min="0" ref="total" placeholder="TotalStock" className = "pure-u-1-2" /><br/>
-          
+
           {stockInfoForm}
           {accountedStock===this.state.total?null:<p style ={{color:'red'}}>Condition quanities must match total amount of stock</p>}
 
