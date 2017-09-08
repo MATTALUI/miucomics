@@ -81,7 +81,9 @@ input{
 .coverButton{
   margin-top: 3% !important;
 }
-
+.loader{
+  margin-top: 19%;
+}
 
 
 

@@ -128,7 +128,7 @@ export default class NewIssue extends React.Component{
           <input id="cover" name="cover" type="file" ref="cover_image" placeholder="Cover" hidden={true}/><br/>
 
           <input type="number" min="0" ref="total" placeholder="TotalStock" className = "pure-u-1-2" /><br/>
-          {}
+          
           {stockInfoForm}
           {accountedStock===this.state.total?null:<p style ={{color:'red'}}>Condition quanities must match total amount of stock</p>}
 

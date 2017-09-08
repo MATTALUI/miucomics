@@ -14,6 +14,7 @@ class MainIssues extends React.Component{
     }
     this.state ={
       issues: [],
+      checkedApi: false,
       addNewIssue: false,
       seriesId: this.props.match.params.seriesId,
       seriesTitle: this.props.match.params.seriesTitle.split('-').join(' ')
@@ -22,7 +23,7 @@ class MainIssues extends React.Component{
   componentDidMount= async ()=>{
     let call = await fetch(`${this.host}/comics/series/${this.state.seriesId}`);
     let issues = await call.json();
-    this.setState({issues})
+    this.setState({issues, checkedApi:true})
   }
   toggleNewIssueForm = ()=>{
     if(this.state.addNewIssue){
@@ -42,7 +43,7 @@ class MainIssues extends React.Component{
 
   // <button style={{height: '10vh'}} className="pure-u-1-5 pure-button button-warning" onClick={this.toggleNewIssueForm}>ADD NEW Issue</button>
   render(){
-    if (this.state.issues.length > 0) return (
+    if (this.state.checkedApi) return (
       <div>
         <Navbar action={this.toggleNewIssueForm} buttonText={'ISSUE'} show={true}/>
         {this.state.addNewIssue?<NewIssue cancel={this.toggleNewIssueForm} seriesId={Number(this.state.seriesId)} seriesTitle={this.state.seriesTitle}
@@ -51,9 +52,9 @@ class MainIssues extends React.Component{
           <h1>{this.state.seriesTitle}</h1>
 
           <div className="pure-g">
-            {this.state.issues.map((issue,i)=>{
+            {this.state.issues.length?this.state.issues.map((issue,i)=>{
               return <IssueShower key ={i} id={issue.id} number={issue.number} cover={issue.cover_image} series={this.state.seriesTitle} stock={issue.stock} shopify={issue.shopify} ebay={issue.ebay}/>
-            })}
+            }):<h3 className="pure-u-1">There are no issues in this series.</h3>}
           </div>
         </div>
       </div>
@@ -64,7 +65,8 @@ class MainIssues extends React.Component{
       {this.state.addNewIssue?<NewIssue seriesId={Number(this.state.seriesId)} cancel={this.toggleNewIssueForm} seriesTitle={this.state.seriesTitle}
       newIssueHandler={this.newIssueHandler}/>:null}
       <div className = "App">
-        <h1>There are no issues in this series...</h1>
+        <h1>{this.state.seriesTitle}</h1>
+        <img src="/assets/loading.gif" className="loader" alt="loading spinner"/>
 
       </div>
       </div>
