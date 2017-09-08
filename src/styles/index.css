@@ -80,6 +80,7 @@ input{
 }
 .coverButton{
   margin-top: 3% !important;
+  overflow: hidden;
 }
 .loader{
   margin-top: 19%;
