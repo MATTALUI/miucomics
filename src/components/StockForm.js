@@ -24,7 +24,7 @@ export default class StockForm extends React.Component{
             <option value="Fair">Fair</option>
             <option value="Poor">Poor</option>
           </select>
-          <input type="number" ref="price" step ="0.01"/>
+          <input placeholder="$$$" type="number" ref="price" step ="0.01"/>
         </div>
     )
   }
