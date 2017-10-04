@@ -12,7 +12,7 @@ class NewSeries extends React.Component{
   updateForm = async ()=>{
     this.setState({
       title: this.refs.title.value,
-      volume: this.refs.volume.value
+      volume: Number(this.refs.volume.value)
     });
   }
   submit = async (event)=>{

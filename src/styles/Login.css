@@ -1,0 +1,20 @@
+.login{
+  background-color: rgb(47,69,123);
+  height: 400px;
+  margin-top: 10%;
+}
+.logoHolder{
+  width: 15%;
+  margin: 0 auto;
+}
+img{
+  max-width: 100%;
+}
+button{
+  margin-top: 1em;
+}
+h3{
+  margin-top: .5em;
+  color: rgb(255,50,50);
+  text-align: center;
+}

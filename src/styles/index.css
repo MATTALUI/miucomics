@@ -53,6 +53,8 @@ input{
 
 .button-warning {
   /*background: rgb(223, 117, 20); /* this is an orange */
+
+  /*yellow*/
   background-color: rgb(255,216,95);
   color: #000;
 }
@@ -77,6 +79,8 @@ input{
 }
 input{
   text-align: center;
+
+
 }
 .coverButton{
   margin-top: 3% !important;
