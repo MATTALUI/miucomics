@@ -26,7 +26,7 @@ export default class Login extends React.Component{
           <div className="pure-u-4-24"></div>
           <div className="pure-u-2-3 login">
             <div className="logoHolder">
-              <img src="/assets/miu-logo.png" alt="Mix It Up Comics Logo"  />
+              <img className="loginLogo" src="/assets/miu-logo.png" alt="Mix It Up Comics Logo"  />
             </div>
             <form onChange={this.updateForm} className="pure-form">
             <div className="pure-u-1-4"></div>
@@ -36,8 +36,9 @@ export default class Login extends React.Component{
             <div className="pure-u-9-24"></div>
             <button onClick={this.login} className="pure-button button-warning pure-u-1-4">LOG IN</button>
             </form>
-            {this.props.valid?null:<h3>Invalid Login Information.</h3>}
+
           </div>
+          {this.props.valid?null:<h3 className="pure-u-1 error">Invalid Login Information.</h3>}
         </div>
       </div>
     )

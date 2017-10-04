@@ -23,14 +23,20 @@ class View extends React.Component{
     }
   }
   componentWillMount = async ()=>{
-    let call = await fetch(`${this.host}/login`);
+    let call = await fetch(`${this.host}/login`,{
+      credentials: 'include'
+    });
     let response = await call.json();
     this.setState({loggedIn: response});
   }
   login = async (loginInfo) =>{
     let call = await fetch(`${this.host}/login`,{
       method: "POST",
-      body: loginInfo
+      body: JSON.stringify(loginInfo),
+      credentials: 'include',
+      headers: {
+        "Content-Type": "application/json"
+      }
     });
     let response = await call.json();
     if(response){

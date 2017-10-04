@@ -6,7 +6,7 @@ class Navbar extends React.Component{
     return (
       <nav className="pure-g">
         <Link to="/">
-
+          <img id="logo" src="/assets/miu-logo.png" alt="Mix It Up Comics Logo"  />
         </Link>
         <button
         onClick={this.props.action}
