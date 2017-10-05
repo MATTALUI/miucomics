@@ -7,16 +7,30 @@ export default class NewPasswordForm extends React.Component {
       current: '',
       newPassword: '',
       confirmNew: '',
-    }
+    };
   }
-  cancel = (event)=>{
+  cancel = (event) => {
     event.preventDefault();
     this.props.cancel();
   }
   submit = (event)=>{
     event.preventDefault();
-    console.log(this.state);
-    this.props.submit();
+    if(this.validate()){
+      this.props.submit({
+        current: this.refs.current.value,
+        new: this.refs.new.value
+      });
+    }
+  }
+  validate = () =>{
+    if (this.refs.confirm.value === this.refs.new.value){
+      return true;
+    }else{
+      this.props.message({
+        text: 'New Passwords Do Not Match',
+        class: 'error'
+      });
+    }
   }
   updateForm = ()=>{
     this.setState({
