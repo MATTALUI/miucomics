@@ -38,11 +38,16 @@ export default class Account extends React.Component{
         'Content-Type': 'application/json'
       }
     });
-    let message = await call.json();
-    if(message.class === 'success'){
-      this.setState({message, createNewPassword: false});
-    }else{
-      this.setState({message});
+    try{
+      let message = await call.json();
+      if(message.class === 'success'){
+        this.setState({message, createNewPassword: false});
+      }else{
+        this.setState({message});
+      }
+    }
+    catch(err){
+      window.location.pathname = '/';
     }
   }
   setMessage = (message)=>{
