@@ -10,11 +10,12 @@ class Navbar extends React.Component{
       this.host = 'http://localhost:8000'
     }
   }
-  logout = ()=>{
-    fetch(`${this.host}/login`,{
+  logout = async ()=>{
+    let call = await fetch(`${this.host}/login`,{
       method: 'DELETE',
       credentials: 'include'
     });
+    let response = await call.text();
     window.location.pathname = '/';
   }
   render(){
