@@ -4,6 +4,7 @@ import './styles/index.css';
 import Main from './components/Main.js';
 import MainIssues from './components/MainIssues.js';
 import NewSeries from './components/NewSeries.js';
+import Account from './components/Account.js';
 import TheChicken from './components/TheChicken.js';
 import FourOhFour from './components/FourOhFour.js';
 import Login from './components/Login.js';
@@ -51,6 +52,7 @@ class View extends React.Component{
           <Switch>
             <Route path="/" exact component={Main}/>
             <Route path="/new" exact component={NewSeries}/>
+            <Route path="/account" exact component={Account}/>
             <Route path="/:seriesId/:seriesTitle" exact component={MainIssues}/>
             <Route path="/🐔" exact component={TheChicken}/>
             <Route component={FourOhFour}/>

@@ -101,7 +101,9 @@ input{
   max-width: 2em;
   margin-top: 1em;
 }
-
+.accountInfo{
+  width: 100%;
+}
 
 
 
