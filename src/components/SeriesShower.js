@@ -51,7 +51,7 @@ class SeriesShower extends React.Component{
                 <div className="chooseArrow right" onClick={this.coverRight}></div>
               </div>
             :null}
-            <h3>{`${this.props.title} V${this.props.volume}`}</h3>
+            <h3>{`${this.props.title} (Volume ${this.props.volume})`}</h3>
           </div>
         </div>
       </Link>

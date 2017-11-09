@@ -15,7 +15,7 @@ class Navbar extends React.Component{
       method: 'DELETE',
       credentials: 'include'
     });
-    let response = await call.text();
+    await call.text();
     window.location.pathname = '/';
   }
   render(){
