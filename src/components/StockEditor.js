@@ -131,7 +131,7 @@ class StockEditor extends React.Component{
                 <i className="fa fa-arrow-right rightArrow" onClick={()=>{this.incrementCount('Mint')}}/>
               </td>
               <td>
-                <input type="number" min="0" defaultValue={this.state.mint.price} className="priceEdit" ref="mintPrice"onChange={()=>{this.adjustPrice('Mint')}}/>
+                <input type="number" min="0" defaultValue={this.state.mint.price} className="priceEdit" ref="mintPrice" onBlur={()=>{this.adjustPrice('Mint')}}/>
               </td>
             </tr>
 
@@ -149,7 +149,7 @@ class StockEditor extends React.Component{
                 <i className="fa fa-arrow-right rightArrow" onClick={()=>{this.incrementCount('Near Mint')}}/>
               </td>
               <td>
-                <input type="number" min="0" defaultValue={this.state.nearMint.price} className="priceEdit" ref="nearMintPrice"onChange={()=>{this.adjustPrice('Near Mint')}}/>
+                <input type="number" min="0" defaultValue={this.state.nearMint.price} className="priceEdit" ref="nearMintPrice"onBlur={()=>{this.adjustPrice('Near Mint')}}/>
               </td>
             </tr>
 
@@ -167,7 +167,7 @@ class StockEditor extends React.Component{
                 <i className="fa fa-arrow-right rightArrow" onClick={()=>{this.incrementCount('Very Fine')}}/>
               </td>
               <td>
-                <input type="number" min="0" defaultValue={this.state.veryFine.price} className="priceEdit" ref="veryFinePrice"onChange={()=>{this.adjustPrice('Very Fine')}}/>
+                <input type="number" min="0" defaultValue={this.state.veryFine.price} className="priceEdit" ref="veryFinePrice"onBlur={()=>{this.adjustPrice('Very Fine')}}/>
               </td>
             </tr>
 
@@ -185,7 +185,7 @@ class StockEditor extends React.Component{
                 <i className="fa fa-arrow-right rightArrow" onClick={()=>{this.incrementCount('Fine')}}/>
               </td>
               <td>
-                <input type="number" min="0" defaultValue={this.state.fine.price} className="priceEdit" ref="finePrice"onChange={()=>{this.adjustPrice('Fine')}}/>
+                <input type="number" min="0" defaultValue={this.state.fine.price} className="priceEdit" ref="finePrice"onBlur={()=>{this.adjustPrice('Fine')}}/>
               </td>
             </tr>
 
@@ -203,7 +203,7 @@ class StockEditor extends React.Component{
                 <i className="fa fa-arrow-right rightArrow" onClick={()=>{this.incrementCount('Very Good')}}/>
               </td>
               <td>
-                <input type="number" min="0" defaultValue={this.state.veryGood.price} className="priceEdit" ref="veryGoodPrice"onChange={()=>{this.adjustPrice('Very Good')}}/>
+                <input type="number" min="0" defaultValue={this.state.veryGood.price} className="priceEdit" ref="veryGoodPrice"onBlur={()=>{this.adjustPrice('Very Good')}}/>
               </td>
             </tr>
 
@@ -219,7 +219,7 @@ class StockEditor extends React.Component{
                 <i className="fa fa-arrow-right rightArrow" onClick={()=>{this.incrementCount('Good')}}/>
               </td>
               <td>
-                <input type="number" min="0" defaultValue={this.state.good.price} className="priceEdit" ref="goodPrice"onChange={()=>{this.adjustPrice('Good')}}/>
+                <input type="number" min="0" defaultValue={this.state.good.price} className="priceEdit" ref="goodPrice"onBlur={()=>{this.adjustPrice('Good')}}/>
               </td>
             </tr>
 
@@ -237,7 +237,7 @@ class StockEditor extends React.Component{
                 <i className="fa fa-arrow-right rightArrow" onClick={()=>{this.incrementCount('Fair')}}/>
               </td>
               <td>
-                <input type="number" min="0" defaultValue={this.state.fair.price} className="priceEdit" ref="fairPrice"onChange={()=>{this.adjustPrice('Fair')}}/>
+                <input type="number" min="0" defaultValue={this.state.fair.price} className="priceEdit" ref="fairPrice"onBlur={()=>{this.adjustPrice('Fair')}}/>
               </td>
             </tr>
 
@@ -255,7 +255,7 @@ class StockEditor extends React.Component{
                 <i className="fa fa-arrow-right rightArrow" onClick={()=>{this.incrementCount('Poor')}}/>
               </td>
               <td>
-                <input type="number" min="0" defaultValue={this.state.poor.price} className="priceEdit" ref="poorPrice"onChange={()=>{this.adjustPrice('Poor')}}/>
+                <input type="number" min="0" defaultValue={this.state.poor.price} className="priceEdit" ref="poorPrice"onBlur={()=>{this.adjustPrice('Poor')}}/>
               </td>
             </tr>
           </tbody>
