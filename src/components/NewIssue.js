@@ -16,7 +16,8 @@ export default class NewIssue extends React.Component{
       total: 0,
       accounted_for: [],
       ebay: false,
-      shopify: false
+      shopify: false,
+      error: null
     }
   }
 
@@ -77,16 +78,32 @@ export default class NewIssue extends React.Component{
     this.generateStockForm(Number(this.refs.total.value));
   }
   validate = ()=>{
-    let infoValid = (this.state.number === 0 || this.state.total===0)?false:true;
+    if (this.state.number === 0 ) {
+      this.setState({error: 'Please add an issue number.'});
+      return false;
+    }else if(this.state.total===0){
+      this.setState({error: 'Please add total stock quantity.'});
+      return false;
+    }
+    // let infoValid = (this.state.number === 0 || this.state.total===0)?false:true;
     let counter = 0;
     this.state.accounted_for.forEach((field)=>{
       counter+=field.quantity;
     });
+    if (counter !== this.state.total) {
+      this.setState({error: 'Condition quanities must match total amount of stock.'});
+      return false;
+    }
     let allStockFormsFilled = true;
     if(this.state.accounted_for.length >0){
       allStockFormsFilled = !this.state.accounted_for.map((form)=>{return (form.quantity > 0 && form.price > 0);}).some((check)=>check===false);
     }
-    return (infoValid && (counter === this.state.total) && allStockFormsFilled);
+    if(!allStockFormsFilled){
+      this.setState({error: 'Please fill out all stock forms.'});
+      return false;
+    }
+    this.setState({error: null});
+    return true;
   }
   generateStockForm = ()=>{
     if(this.state.total<1){
@@ -128,16 +145,17 @@ export default class NewIssue extends React.Component{
           <label htmlFor="cover" className="pure-button pure-u-1-2 button-warning coverButton">{this.state.cover_image?this.state.cover_image.name:'ADD COVER'}</label>
           <input id="cover" name="cover" type="file" ref="cover_image" placeholder="Cover" hidden={true}/><br/>
 
-          <input type="number" min="0" ref="total" placeholder="TotalStock" className = "pure-u-1-2" /><br/>
+          <input type="number" min="0" ref="total" placeholder="Total Stock" className = "pure-u-1-2" /><br/>
 
           {stockInfoForm}
-          {accountedStock===this.state.total?null:<p style ={{color:'red'}}>Condition quanities must match total amount of stock</p>}
+          {true?null:<p style ={{color:'red'}}>Condition quanities must match total amount of stock</p>}
 
           <input type="checkbox" ref="ebay" placeholder="ebay" hidden={true}/><label hidden={true}>Display on Ebay{'    '}</label>
           <input type="checkbox" ref="shopify" placeholder="shopify"/>Display on shopify<br/>
 
           <button className="pure-button pure-u-1-4 button-error cancel"  onClick={this.cancel}>CANCEL</button>
           <button type="submit" className="pure-button pure-u-1-4 button-success submit">SUBMIT</button>
+          <p style={{color:'red'}}>{this.state.error}</p>
         </form>
       </div>
     )
