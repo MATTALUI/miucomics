@@ -2,6 +2,8 @@ import React from 'react';
 import Navbar from './Navbar.js';
 import IssueShower from './IssueShower.js';
 import NewIssue from './NewIssue.js';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import '../styles/Main.css';
 
 class MainIssues extends React.Component{
@@ -40,22 +42,39 @@ class MainIssues extends React.Component{
       addNewIssue: false
     });
   }
-  deleteIssue = async(index)=>{
-    let copy = this.state.issues.slice();
-    let deletedPost = copy[index];
-    await fetch(`${this.host}/comics/issues/${deletedPost.id}`,{
-      method: "DELETE"
+  deleteIssue = async (index)=>{
+    confirmAlert({
+      title: 'Delete Issue',
+      message: 'This will delete this issue on all applications that it\'s registered with. This can not be undone. Are you sure?',
+      confirmLabel: 'DELETE',
+      cancelLabel: 'CANCEL',
+      onConfirm: async ()=>{
+        let copy = this.state.issues.slice();
+        let deletedPost = copy[index];
+        await fetch(`${this.host}/comics/issues/${deletedPost.id}`,{
+          method: "DELETE"
+        });
+        copy.splice(index,1);
+        this.setState({issues:copy});
+      }
     });
-    copy.splice(index,1);
-    this.setState({issues:copy});
-
   }
+
+
   deleteSeries = async ()=>{
-    let seriesId = this.props.match.params.seriesId;
-    await fetch(`${this.host}/comics/series/${seriesId}`,{
-      method: 'DELETE'
+    confirmAlert({
+      title: 'Delete Series',
+      message: 'This will delete this series and all of its issues on all applications that they\'re registered with. This can not be undone. Are you sure?',
+      confirmLabel: 'DELETE',
+      cancelLabel: 'CANCEL',
+      onConfirm: async ()=>{
+        let seriesId = this.props.match.params.seriesId;
+        await fetch(`${this.host}/comics/series/${seriesId}`,{
+          method: 'DELETE'
+        });
+        window.location = '/';
+      }
     });
-    window.location = '/';
   }
   // <button style={{height: '10vh'}} className="pure-u-1-5 pure-button button-warning" onClick={this.toggleNewIssueForm}>ADD NEW Issue</button>
   render(){
