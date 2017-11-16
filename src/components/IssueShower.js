@@ -48,10 +48,16 @@ class IssueShower extends React.Component{
             </div>
             <div className="half">
               <div className="pure-g">
+              <div className="pure-u-1">
+                <button className="pure-button button-error closer" onClick={this.toggleModal}>Close</button>
+
+              </div>
                 <StockEditor stock={this.props.stock} id={this.props.id}/>
-                {this.props.shopify?<div className="pure-u-1-2 App"><img alt="tracking on shopify" src="/assets/shopify-icon.png" className="shopify"/></div>:null}
-                <div className="pure-u-1">
-                  <button className="pure-button button-error closer" onClick={this.toggleModal}>Close</button>
+                {false?<div className="pure-u-1-2 App"><img alt="tracking on shopify" src="/assets/shopify-icon.png" className="shopify"/></div>:null}
+                <div className="pure-u-1 issueController">
+                  <button className="pure-button pure-u-1-3 button-warning controllerButton">Edit Issue</button>
+                  <button className="pure-button pure-u-1-3 button-warning controllerButton">Shopify</button>
+                  <button className="pure-button pure-u-1-3 button-error controllerButton" onClick={()=>{this.props.deleteIssue(this.props.index)}}>Delete Issue</button>
                 </div>
               </div>
             </div>

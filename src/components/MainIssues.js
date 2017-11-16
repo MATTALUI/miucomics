@@ -40,7 +40,18 @@ class MainIssues extends React.Component{
       addNewIssue: false
     });
   }
+  deleteIssue = async(index)=>{
+    let copy = this.state.issues.slice();
+    let deletedPost = copy[index];
+    let request = await fetch(`${this.host}/comics/issues/${deletedPost.id}`,{
+      method: "DELETE"
+    });
+    // await request.json();
+    console.log('delete:\n',copy[index]);
+    copy.splice(index,1);
+    this.setState({issues:copy});
 
+  }
   // <button style={{height: '10vh'}} className="pure-u-1-5 pure-button button-warning" onClick={this.toggleNewIssueForm}>ADD NEW Issue</button>
   render(){
     if (this.state.checkedApi) return (
@@ -52,8 +63,8 @@ class MainIssues extends React.Component{
           <h1>{this.state.seriesTitle}</h1>
 
           <div className="pure-g">
-            {this.state.issues.length?this.state.issues.map((issue,i)=>{
-              return <IssueShower key ={i} id={issue.id} number={issue.number} cover={issue.cover_image} series={this.state.seriesTitle} stock={issue.stock} shopify={issue.shopify} ebay={issue.ebay}/>
+            {this.state.issues.length?this.state.issues.map((issue,index)=>{
+              return <IssueShower key ={index} index={index} id={issue.id} number={issue.number} cover={issue.cover_image} series={this.state.seriesTitle} stock={issue.stock} shopify={issue.shopify} ebay={issue.ebay} deleteIssue={this.deleteIssue}/>
             }):<h3 className="pure-u-1">There are no issues in this series.</h3>}
           </div>
         </div>
