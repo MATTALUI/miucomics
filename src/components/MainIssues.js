@@ -43,14 +43,19 @@ class MainIssues extends React.Component{
   deleteIssue = async(index)=>{
     let copy = this.state.issues.slice();
     let deletedPost = copy[index];
-    let request = await fetch(`${this.host}/comics/issues/${deletedPost.id}`,{
+    await fetch(`${this.host}/comics/issues/${deletedPost.id}`,{
       method: "DELETE"
     });
-    // await request.json();
-    console.log('delete:\n',copy[index]);
     copy.splice(index,1);
     this.setState({issues:copy});
 
+  }
+  deleteSeries = async ()=>{
+    let seriesId = this.props.match.params.seriesId;
+    await fetch(`${this.host}/comics/series/${seriesId}`,{
+      method: 'DELETE'
+    });
+    window.location = '/';
   }
   // <button style={{height: '10vh'}} className="pure-u-1-5 pure-button button-warning" onClick={this.toggleNewIssueForm}>ADD NEW Issue</button>
   render(){
@@ -68,18 +73,18 @@ class MainIssues extends React.Component{
             }):<h3 className="pure-u-1">There are no issues in this series.</h3>}
           </div>
         </div>
+        <button className="button-error deleteSeries" onClick={this.deleteSeries}>Delete this series.</button>
       </div>
     )
     return (
       <div>
-      <Navbar action={this.toggleNewIssueForm} buttonText={'ISSUE'} show={true}/>
-      {this.state.addNewIssue?<NewIssue seriesId={Number(this.state.seriesId)} cancel={this.toggleNewIssueForm} seriesTitle={this.state.seriesTitle}
-      newIssueHandler={this.newIssueHandler}/>:null}
-      <div className = "App">
-        <h1>{this.state.seriesTitle}</h1>
-        <img src="/assets/loading.gif" className="loader" alt="loading spinner"/>
-
-      </div>
+        <Navbar action={this.toggleNewIssueForm} buttonText={'ISSUE'} show={true}/>
+        {this.state.addNewIssue?<NewIssue seriesId={Number(this.state.seriesId)} cancel={this.toggleNewIssueForm} seriesTitle={this.state.seriesTitle}
+        newIssueHandler={this.newIssueHandler}/>:null}
+        <div className = "App">
+          <h1>{this.state.seriesTitle}</h1>
+          <img src="/assets/loading.gif" className="loader" alt="loading spinner"/>
+        </div>
       </div>
     )
   }
