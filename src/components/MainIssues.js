@@ -78,7 +78,14 @@ class MainIssues extends React.Component{
       headers
     });
     let response = await request.json();
-    console.log(response);
+    let copy = this.state.issues.slice();
+    let relevantIssue = copy.find((issue)=>(issue.id===response.id));
+    for(let key in response){
+      if(response[key] !== relevantIssue[key]){
+        relevantIssue[key] = response[key];
+      }
+    }
+    this.setState({issues:copy});
   }
 
   deleteSeries = async ()=>{
