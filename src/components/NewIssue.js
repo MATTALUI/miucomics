@@ -139,7 +139,6 @@ export default class NewIssue extends React.Component{
         <form className="pure-form pure-u-1" onChange={this.updateForm}   onSubmit={this.submit}>
           <input type="number" min = "1" placeholder="Issue Number" className="pure-u-1-2" ref="number" /><br/>
 
-          {/* <label htmlFor="date">Publish Date</label><br/>*/}
           <input id="date" className="pure-u-1-2" type="date" ref="pub_date" placeholder="Publish Date" /><br/>
 
           <label htmlFor="cover" className="pure-button pure-u-1-2 button-warning coverButton">{this.state.cover_image?this.state.cover_image.name:'ADD COVER'}</label>

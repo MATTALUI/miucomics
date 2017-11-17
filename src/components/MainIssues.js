@@ -59,7 +59,27 @@ class MainIssues extends React.Component{
       }
     });
   }
-
+  editIssue = async (issueId,issueEdit)=>{
+    if(issueEdit.cover_image && issueEdit.cover_image.type === 'upload'){
+      console.log('do some special form crap');
+      var body = 'special form';
+    }else{
+      if(issueEdit.cover_image){
+        issueEdit.cover_image = issueEdit.cover_image.value;
+      }
+      var body = JSON.stringify(issueEdit);
+      var headers = {
+        'Content-Type': 'application/json'
+      }
+    }
+    let request = await fetch(`${this.host}/comics/issues/${issueId}`,{
+      method: 'PATCH',
+      body,
+      headers
+    });
+    let response = await request.json();
+    console.log(response);
+  }
 
   deleteSeries = async ()=>{
     confirmAlert({
@@ -88,7 +108,7 @@ class MainIssues extends React.Component{
 
           <div className="pure-g">
             {this.state.issues.length?this.state.issues.map((issue,index)=>{
-              return <IssueShower key ={index} index={index} id={issue.id} number={issue.number} cover={issue.cover_image} series={this.state.seriesTitle} stock={issue.stock} shopify={issue.shopify} ebay={issue.ebay} deleteIssue={this.deleteIssue}/>
+              return <IssueShower key ={index} index={index} id={issue.id} number={issue.number} cover={issue.cover_image} series={this.state.seriesTitle} stock={issue.stock} shopify={issue.shopify} ebay={issue.ebay} deleteIssue={this.deleteIssue} pub_date={issue.pub_date} editIssue={this.editIssue}/>
             }):<h3 className="pure-u-1">There are no issues in this series.</h3>}
           </div>
         </div>
