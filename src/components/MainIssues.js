@@ -60,15 +60,25 @@ class MainIssues extends React.Component{
     });
   }
   editIssue = async (issueId,issueEdit)=>{
+    let body;
+    let headers;
     if(issueEdit.cover_image && issueEdit.cover_image.type === 'upload'){
-      console.log('do some special form crap');
-      var body = 'special form';
+      issueEdit.cover_image = issueEdit.cover_image.value;
+      body = new FormData();
+      for(let key in issueEdit){
+        body.append(key, issueEdit[key]);
+      }
+      body.append('seriesTitle', this.props.match.params.seriesTitle);
+      if(body.get('number')===null){
+        let issueNumber = this.state.issues.find((issue)=>(issue.id===issueId)).number;
+        body.append('number',issueNumber);
+      }
     }else{
       if(issueEdit.cover_image){
         issueEdit.cover_image = issueEdit.cover_image.value;
       }
-      var body = JSON.stringify(issueEdit);
-      var headers = {
+      body = JSON.stringify(issueEdit);
+      headers = {
         'Content-Type': 'application/json'
       }
     }
@@ -103,7 +113,6 @@ class MainIssues extends React.Component{
       }
     });
   }
-  // <button style={{height: '10vh'}} className="pure-u-1-5 pure-button button-warning" onClick={this.toggleNewIssueForm}>ADD NEW Issue</button>
   render(){
     if (this.state.checkedApi) return (
       <div>

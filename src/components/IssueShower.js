@@ -11,6 +11,8 @@ class IssueShower extends React.Component{
     let date = props.pub_date;
     if(date !== null){
       date = props.pub_date.split('T')[0];
+    }else{
+      date = "";
     }
     this.state={
       showInfo: false,
@@ -25,25 +27,12 @@ class IssueShower extends React.Component{
     }
   }
   toggleModal=()=>{
+    this.resetEditor();
     this.setState({showInfo: !this.state.showInfo});
   }
   toggleEditing = ()=>{
     if(this.state.editIssue){
-      let date = this.props.pub_date;
-      if(date !== null){
-        date = this.props.pub_date.split('T')[0];
-      }
-      let defaultState={
-        editIssue: false,
-        pub_date: {value:date, changed: false},
-        number: {value:this.props.number, changed: false},
-        cover_image: {
-          value: null,
-          changed: false,
-          type: 'upload'
-        },
-      }
-      this.setState(defaultState);
+      this.resetEditor();
     }else{
       this.setState({editIssue: true});
     }
@@ -85,20 +74,7 @@ class IssueShower extends React.Component{
       }
     }
     if(JSON.stringify(issueEdit)==='{}'){
-      let date = this.props.pub_date;
-      if(date !== null){
-        date = this.props.pub_date.split('T')[0];
-      }
-      this.setState({
-        editIssue: false,
-        pub_date: {value:date, changed: false},
-        number: {value:this.props.number, changed: false},
-        cover_image: {
-          value: null,
-          changed: false,
-          type: 'upload'
-        },
-      });
+      this.resetEditor()
     }else{
       if(issueEdit.cover_image){
         issueEdit.cover_image = {
@@ -107,21 +83,27 @@ class IssueShower extends React.Component{
         };
       }
       this.props.editIssue(this.props.id,issueEdit);
-      let date = this.props.pub_date;
-      if(date !== null){
-        date = this.props.pub_date.split('T')[0];
-      }
-      this.setState({
-        editIssue: false,
-        pub_date: {value:date, changed: false},
-        number: {value:this.props.number, changed: false},
-        cover_image: {
-          value: null,
-          changed: false,
-          type: 'upload'
-        },
-      });
+      this.resetEditor();
+
     }
+  }
+  resetEditor = ()=>{
+    let date = this.props.pub_date;
+    if(date !== null){
+      date = this.props.pub_date.split('T')[0];
+    }else{
+      date = "";
+    }
+    this.setState({
+      editIssue: false,
+      pub_date: {value:date, changed: false},
+      number: {value:this.props.number, changed: false},
+      cover_image: {
+        value: null,
+        changed: false,
+        type: 'upload'
+      },
+    });
   }
   render(){
     let totalStock = 0;
