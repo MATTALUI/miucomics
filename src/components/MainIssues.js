@@ -97,7 +97,20 @@ class MainIssues extends React.Component{
     }
     this.setState({issues:copy});
   }
-
+  toggleShopify = async (issueId)=>{
+    let request = await fetch(`${this.host}/comics/issues/${issueId}`,{
+      method: 'PATCH',
+      body: JSON.stringify({
+        shopify: 'toggle',
+        seriesTitle: this.props.match.params.seriesTitle
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    let response = await request.json();
+    console.log(response);
+  }
   deleteSeries = async ()=>{
     confirmAlert({
       title: 'Delete Series',
@@ -124,7 +137,8 @@ class MainIssues extends React.Component{
 
           <div className="pure-g">
             {this.state.issues.length?this.state.issues.map((issue,index)=>{
-              return <IssueShower key ={index} index={index} id={issue.id} number={issue.number} cover={issue.cover_image} series={this.state.seriesTitle} stock={issue.stock} shopify={issue.shopify} ebay={issue.ebay} deleteIssue={this.deleteIssue} pub_date={issue.pub_date} editIssue={this.editIssue}/>
+              return <IssueShower key ={index} index={index} id={issue.id} number={issue.number} cover={issue.cover_image} series={this.state.seriesTitle} stock={issue.stock} shopify={issue.shopify} ebay={issue.ebay} deleteIssue={this.deleteIssue} pub_date={issue.pub_date} editIssue={this.editIssue}
+              toggleShopify={this.toggleShopify}/>
             }):<h3 className="pure-u-1">There are no issues in this series.</h3>}
           </div>
         </div>

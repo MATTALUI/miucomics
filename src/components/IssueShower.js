@@ -26,6 +26,23 @@ class IssueShower extends React.Component{
       },
     }
   }
+  componentWillReceiveProps=(nextProps)=>{
+    let date = nextProps.pub_date;
+    if(date !== null){
+      date = nextProps.pub_date.split('T')[0];
+    }else{
+      date = "";
+    }
+    this.setState({
+      pub_date: {value:date, changed: false},
+      number: {value:nextProps.number, changed: false},
+      cover_image: {
+        value: null,
+        changed: false,
+        type: 'upload'
+      },
+    })
+  }
   toggleModal=()=>{
     this.resetEditor();
     this.setState({showInfo: !this.state.showInfo});
@@ -148,7 +165,7 @@ class IssueShower extends React.Component{
                   {false?<div className="pure-u-1-2 App"><img alt="tracking on shopify" src="/assets/shopify-icon.png" className="shopify"/></div>:null}
                   <div className="pure-u-1 issueController">
                     <button className="pure-button pure-u-1-3 button-warning controllerButton" onClick={this.toggleEditing}>Edit Issue</button>
-                    <button className="pure-button pure-u-1-3 button-warning controllerButton">{this.props.shopify?'Stop Tracking':'Track'}</button>
+                    <button onClick={()=>{this.props.toggleShopify(this.props.id)}} className="pure-button pure-u-1-3 button-warning controllerButton">{this.props.shopify?'Stop Tracking':'Track'}</button>
                     <button className="pure-button pure-u-1-3 button-error controllerButton" onClick={()=>{this.props.deleteIssue(this.props.index)}}>Delete Issue</button>
                   </div>
                 </div>
